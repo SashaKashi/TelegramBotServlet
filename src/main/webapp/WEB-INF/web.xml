@@ -5,7 +5,7 @@
          version="4.0">
   <servlet>
     <servlet-name>servlet</servlet-name>
-    <servlet-class>org.example.TelegramBot2.Servlet</servlet-class>
+    <servlet-class>Servlet</servlet-class>
     <load-on-startup>0</load-on-startup>
   </servlet>
 
