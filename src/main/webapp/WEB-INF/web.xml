@@ -11,6 +11,6 @@
 
   <servlet-mapping>
     <servlet-name>servlet</servlet-name>
-    <url-pattern>/TelegramBot2-1.0-SNAPSHOT/servlet</url-pattern>
+    <url-pattern>/servlet</url-pattern>
   </servlet-mapping>
 </web-app>

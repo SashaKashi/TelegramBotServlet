@@ -30,12 +30,12 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
-        return "sasha1988_bot";
+        return "second_activity_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "5687004635:AAHmbNyCHF1E9nVr7v2ZZ8qocNVx_85W2mw";
+        return "5414211981:AAGucgXZCLHANpBMU7LVrW-CWFaU09aY_JE";
     }
 
     public void sendWithoutUrl(Message message){
@@ -85,25 +85,13 @@ public class TelegramBot extends TelegramLongPollingBot {
             if (update.getCallbackQuery().getData().equals("startSasha")){
                 try {
                     sendDocument(update.getCallbackQuery().getMessage().getChatId(), "Sasha's activities", createSashasPDF());
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                } catch (DocumentException e) {
-                    throw new RuntimeException(e);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
+                } catch (FileNotFoundException | DocumentException | SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
             }else if(update.getCallbackQuery().getData().equals("startYura")){
                 try {
                     sendDocument(update.getCallbackQuery().getMessage().getChatId(), "Yura's's activities", createYurasPDF());
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                } catch (DocumentException e) {
-                    throw new RuntimeException(e);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
+                } catch (FileNotFoundException | DocumentException | SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -125,8 +113,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private static InputFile createSashasPDF() throws FileNotFoundException, DocumentException, SQLException, ClassNotFoundException {
         String fileName = //"/home/sashakashinskaya/SashasData.pdf";
-                //"d:\\java\\andersen\\SashasData.pdf";
-                "/opt/tomcat/latest/bin/sasha.pdf";
+                "d:\\java\\andersen\\SashasData.pdf";
+               // "/opt/tomcat/latest/bin/sasha.pdf";
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -165,8 +153,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private static InputFile createYurasPDF() throws FileNotFoundException, DocumentException, SQLException, ClassNotFoundException {
         String fileName = //"/home/sashakashinskaya/YurasData.pdf";
-                //"d:\\java\\andersen\\YurasData.pdf";
-        "/opt/tomcat/latest/bin/yura.pdf";
+                "d:\\java\\andersen\\YurasData.pdf";
+        //"/opt/tomcat/latest/bin/yura.pdf";
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(fileName));
