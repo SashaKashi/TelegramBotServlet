@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-  <servlet>
-    <servlet-name>servlet</servlet-name>
-    <servlet-class>Servlet</servlet-class>
-    <load-on-startup>0</load-on-startup>
-  </servlet>
+<!--  <servlet>-->
+<!--    <servlet-name>servlet</servlet-name>-->
+<!--    <servlet-class>Servlet</servlet-class>-->
+<!--    <load-on-startup>0</load-on-startup>-->
+<!--  </servlet>-->
 
-  <servlet-mapping>
-    <servlet-name>servlet</servlet-name>
-    <url-pattern>/servlet</url-pattern>
-  </servlet-mapping>
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>servlet</servlet-name>-->
+<!--    <url-pattern>/</url-pattern>-->
+<!--  </servlet-mapping>-->
 </web-app>
