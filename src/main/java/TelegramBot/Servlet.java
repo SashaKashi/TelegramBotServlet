@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "servlet", value = "/servlet")
-public class StartServlet extends HttpServlet {
+public class Servlet extends HttpServlet {
 
     public void init() {
         try {
@@ -23,7 +23,4 @@ public class StartServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
     }
-
-
 }
-
