@@ -5,12 +5,12 @@
          version="4.0">
   <servlet>
     <servlet-name>servlet</servlet-name>
-    <servlet-class>Servlet</servlet-class>
-    <load-on-startup>0</load-on-startup>
+    <servlet-class>servlet</servlet-class>
+   <load-on-startup>0</load-on-startup>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>servlet</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/TelegramBot2-1.0-SNAPSHOT/servlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "servlet", value = "/")
-public class Servlet extends HttpServlet {
+//@WebServlet(name = "servlet", urlPatterns = {"/TelegramBot2-1.0-SNAPSHOT/servlet"})
+public class servlet extends HttpServlet {
 
     public void init() {
         try {
