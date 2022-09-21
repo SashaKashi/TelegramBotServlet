@@ -89,7 +89,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
             Date date;
             try {
-                date = dateFormat.parse("14:00:00");
+                date = dateFormat.parse("14:03:00");
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
