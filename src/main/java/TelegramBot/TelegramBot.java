@@ -209,7 +209,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     SendMessage.builder()
                             .chatId(command.getChatId())
                             .parseMode("Markdown")
-                            .text("Do not know such command!" + LocalDateTime.now())
+                            .text("Do not know such command!")
                             .build());
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
