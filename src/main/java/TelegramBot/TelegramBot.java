@@ -22,12 +22,18 @@ import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
 
 public class TelegramBot extends TelegramLongPollingBot {
+
     @Override
     public String getBotUsername() {
         return "third_activity_bot";
@@ -38,7 +44,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         return "5419746920:AAFb-AHnGg6szfAXoKWnEKW5xwGF7-uU4CU";
     }
 
-    public void sendWithoutUrl(Message message){
+    public void sendOptionsButtons(Message message){
         InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup();
         InlineKeyboardButton buttonS = new InlineKeyboardButton();
         InlineKeyboardButton buttonY = new InlineKeyboardButton();
@@ -77,6 +83,24 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if ("/start".equals(messageText)) {
                 startAnswer(command);
+
+
+
+            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            Date date;
+            try {
+                date = dateFormat.parse("14:00:00");
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            Timer timer = new Timer();
+            timer.schedule(new ScheduledTask(this, command), date, 120000L);
+
+
+
+
+
+
             } else {
                 defaultAnswer(command);
             }
@@ -133,7 +157,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         ps = Utils.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
         rs = ps.executeQuery();
 
-        document.add(new Paragraph("Sasha's activity "+ LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"))));
+        document.add(new Paragraph("Sasha's activity " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"))));
         document.add(new Paragraph(" "));
 
         while (rs.next()) {
@@ -170,7 +194,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         PreparedStatement ps;
         ResultSet rs;
         String query = "SELECT * FROM activities WHERE student_name = 'Yury' and status = 'valid'";
-        ps = Utils.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+        ps = Utils.getConnection().prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         rs = ps.executeQuery();
 
         document.add(new Paragraph("Yury's activity " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"))));
@@ -180,7 +204,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             table.addCell(rs.getString("activity_type"));
             table.addCell(rs.getString("prolongation"));
-            rs.updateString("status","unvalid");
+            rs.updateString("status", "invalid");
             rs.updateRow();
 
         }
@@ -192,11 +216,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
 
-    private void startAnswer(Message command){
-        sendWithoutUrl(command);
+    private void startAnswer(Message command) {
+        sendOptionsButtons(command);
     }
 
-    private void defaultAnswer(Message command){
+    private void defaultAnswer(Message command) {
         try {
             execute(
                     SendMessage.builder()
@@ -208,4 +232,18 @@ public class TelegramBot extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
     }
+
+    public void sendRemind(Message command) {
+        try {
+            execute(
+                    SendMessage.builder()
+                            .chatId(command.getChatId())
+                            .parseMode("Markdown")
+                            .text("Files are ready! You can look.")
+                            .build());
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
