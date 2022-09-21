@@ -34,7 +34,9 @@ public class servlet extends HttpServlet {
             }
             Timer timer = new Timer();
             //timer.schedule(new ScheduledTask(bot),30000L);
-            timer.schedule(new ScheduledTask(bot), date, 30000);
+
+            timer.schedule(new ScheduledTask(bot), date, 1740000L);
+
 
 
 
