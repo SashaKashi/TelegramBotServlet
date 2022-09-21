@@ -28,14 +28,14 @@ public class servlet extends HttpServlet {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date;
             try {
-                date = dateFormat.parse("2022-09-21 15:17:00");
+                date = dateFormat.parse("2022-09-21 15:40:00");
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
             Timer timer = new Timer();
             //timer.schedule(new ScheduledTask(bot),30000L);
 
-            timer.schedule(new ScheduledTask(bot), date, 1740000L);
+            timer.schedule(new ScheduledTask(bot), date);
 
 
 
