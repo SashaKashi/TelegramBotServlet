@@ -34,6 +34,8 @@ import java.util.Timer;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
+    Update update;
+
     @Override
     public String getBotUsername() {
         return "fourth_activity_bot";
@@ -83,19 +85,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if ("/start".equals(messageText)) {
                 startAnswer(command);
-
-//
-////            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-////            Date date;
-////            try {
-////                date = dateFormat.parse("2022-09-21 15:00:00");
-////            } catch (ParseException e) {
-////                throw new RuntimeException(e);
-////            }
-//            Timer timer = new Timer();
-//            timer.schedule(new ScheduledTask(this, command),30000L);
-//            //timer.schedule(new ScheduledTask(this, command), date, 2400000L);
-
 
             } else {
                 defaultAnswer(command);
@@ -229,11 +218,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public void sendRemind(Message command) {
+    public void sendRemind() {
         try {
             execute(
                     SendMessage.builder()
-                            .chatId(command.getChatId())
+                            .chatId(update.getMessage().getChatId())
                             .parseMode("Markdown")
                             .text("Files are ready! To look through them you should enter \"/start\" and just choose one of them")
                             .build());
