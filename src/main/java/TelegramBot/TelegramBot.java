@@ -84,8 +84,6 @@ public class TelegramBot extends TelegramLongPollingBot {
             if ("/start".equals(messageText)) {
                 startAnswer(command);
 
-
-
 //            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //            Date date;
 //            try {
@@ -96,7 +94,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 //            Timer timer = new Timer();
 //            //timer.schedule(new ScheduledTask(this, command),30000L);
 //            timer.schedule(new ScheduledTask(this, command), date, 30000L);
-
 
 
             } else {
