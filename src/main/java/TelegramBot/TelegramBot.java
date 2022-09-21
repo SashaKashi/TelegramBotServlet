@@ -104,7 +104,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         PreparedStatement ps;
         ResultSet rs;
-        String query = "SELECT * FROM activities WHERE student_name = 'Sasha' and status = 'valid'";
+        String query = "SELECT * FROM activity WHERE student_name = 'Sasha' and status = 'valid'";
         ps = Utils.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
         rs = ps.executeQuery();
 
@@ -144,7 +144,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         PreparedStatement ps;
         ResultSet rs;
-        String query = "SELECT * FROM activities WHERE student_name = 'Yury' and status = 'valid'";
+        String query = "SELECT * FROM activity WHERE student_name = 'Yury' and status = 'valid'";
         ps = Utils.getConnection().prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         rs = ps.executeQuery();
 
