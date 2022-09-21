@@ -89,14 +89,13 @@ public class TelegramBot extends TelegramLongPollingBot {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date;
             try {
-                date = dateFormat.parse("2022-09-21 14:20:00");
+                date = dateFormat.parse("2022-09-21 14:53:00");
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
             Timer timer = new Timer();
-            timer.schedule(new ScheduledTask(this, command),30000L);
-
-
+            //timer.schedule(new ScheduledTask(this, command),30000L);
+            timer.schedule(new ScheduledTask(this, command), date);
 
 
 
@@ -238,7 +237,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     SendMessage.builder()
                             .chatId(command.getChatId())
                             .parseMode("Markdown")
-                            .text("Files are ready! You can look through them.")
+                            .text("Files are ready! To look through them you should enter \"/start\" and just choose one of them")
                             .build());
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
