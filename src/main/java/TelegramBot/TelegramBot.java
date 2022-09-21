@@ -22,29 +22,25 @@ import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
+
 
 public class TelegramBot extends TelegramLongPollingBot {
 
-    long chatId;
+    List <Long> chatIds = new ArrayList<>();
 
     @Override
     public String getBotUsername() {
-        return "fourth_activity_bot";
+        return "fifth_activity_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "5679652866:AAGSXgLxuSOs2890ZuPsFESka6t90HGRQ6I";
+        return "5711664641:AAEtkAkfhG6PmkS-azsZ9HsosL1HLowKvIE";
     }
 
     public void sendOptionsButtons(Message message){
@@ -83,7 +79,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             String messageText = update.getMessage().getText();
             Message command = update.getMessage();
-            chatId=update.getMessage().getChatId();
+            chatIds.add(update.getMessage().getChatId());
 
             if ("/start".equals(messageText)) {
                 startAnswer(command);
@@ -221,16 +217,17 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public void sendRemind() {
-        try {
-            execute(
-                    SendMessage.builder()
-                            .chatId(chatId)
-                            .parseMode("Markdown")
-                            .text("Files are ready! To look through them you should enter \"/start\" and just choose one of them")
-                            .build());
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
+        for (Long id : chatIds) {
+            try {
+                execute(
+                        SendMessage.builder()
+                                .chatId(id)
+                                .parseMode("Markdown")
+                                .text("Files are ready! To look through them you should enter \"/start\" and just choose one of them")
+                                .build());
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
-
 }
