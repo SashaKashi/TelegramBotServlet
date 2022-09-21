@@ -30,12 +30,12 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
-        return "second_activity_bot";
+        return "third_activity_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "5414211981:AAGucgXZCLHANpBMU7LVrW-CWFaU09aY_JE";
+        return "5419746920:AAFb-AHnGg6szfAXoKWnEKW5xwGF7-uU4CU";
     }
 
     public void sendWithoutUrl(Message message){
@@ -113,8 +113,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private static InputFile createSashasPDF() throws FileNotFoundException, DocumentException, SQLException, ClassNotFoundException {
         String fileName = //"/home/sashakashinskaya/SashasData.pdf";
-                "d:\\java\\andersen\\SashasData.pdf";
-               // "/opt/tomcat/latest/bin/sasha.pdf";
+                //"d:\\java\\andersen\\SashasData.pdf";
+                "/opt/tomcat/latest/bin/sasha.pdf";
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -153,8 +153,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private static InputFile createYurasPDF() throws FileNotFoundException, DocumentException, SQLException, ClassNotFoundException {
         String fileName = //"/home/sashakashinskaya/YurasData.pdf";
-                "d:\\java\\andersen\\YurasData.pdf";
-        //"/opt/tomcat/latest/bin/yura.pdf";
+                //"d:\\java\\andersen\\YurasData.pdf";
+                "/opt/tomcat/latest/bin/yura.pdf";
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(fileName));
