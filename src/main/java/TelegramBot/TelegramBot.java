@@ -26,6 +26,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +35,7 @@ import java.util.Timer;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
-    Update update;
+    long chatId;
 
     @Override
     public String getBotUsername() {
@@ -82,6 +83,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             String messageText = update.getMessage().getText();
             Message command = update.getMessage();
+            chatId=update.getMessage().getChatId();
 
             if ("/start".equals(messageText)) {
                 startAnswer(command);
@@ -211,7 +213,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     SendMessage.builder()
                             .chatId(command.getChatId())
                             .parseMode("Markdown")
-                            .text("Do not know such command!" + LocalDate.now())
+                            .text("Do not know such command!" + LocalDateTime.now())
                             .build());
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
@@ -222,7 +224,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(
                     SendMessage.builder()
-                            .chatId(update.getMessage().getChatId())
+                            .chatId(chatId)
                             .parseMode("Markdown")
                             .text("Files are ready! To look through them you should enter \"/start\" and just choose one of them")
                             .build());
