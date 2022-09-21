@@ -13,10 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 
-//@WebServlet(name = "servlet", urlPatterns = {"/TelegramBot2-1.0-SNAPSHOT/servlet"})
 public class servlet extends HttpServlet {
-
-
 
     public void init() {
         try {
@@ -24,23 +21,15 @@ public class servlet extends HttpServlet {
             TelegramBot bot = new TelegramBot();
             telegramBotsApi.registerBot(bot);
 
-
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date;
             try {
-                date = dateFormat.parse("2022-09-21 15:40:00");
+                date = dateFormat.parse("2022-09-21 15:30:00");
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
             Timer timer = new Timer();
-            //timer.schedule(new ScheduledTask(bot),30000L);
-
-            timer.schedule(new ScheduledTask(bot), date);
-
-
-
-
-
+            timer.scheduleAtFixedRate(new ScheduledTask(bot), date, 86400000L); //сутки
 
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);

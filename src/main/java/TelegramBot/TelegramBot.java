@@ -23,7 +23,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,36 +40,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         return "5711664641:AAEtkAkfhG6PmkS-azsZ9HsosL1HLowKvIE";
-    }
-
-    public void sendOptionsButtons(Message message){
-        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup();
-        InlineKeyboardButton buttonS = new InlineKeyboardButton();
-        InlineKeyboardButton buttonY = new InlineKeyboardButton();
-
-        buttonS.setText("Sasha's activity");
-        buttonS.setCallbackData("startSasha");
-        buttonY.setText("Yura's activity");
-        buttonY.setCallbackData("startYura");
-
-        List<InlineKeyboardButton> buttons = new ArrayList<>();
-        buttons.add(buttonS);
-        buttons.add(buttonY);
-
-        List <List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        rowList.add(buttons);
-        keyboard.setKeyboard(rowList);
-        try {
-            execute(
-                    SendMessage.builder()
-                            .chatId(message.getChatId())
-                            .parseMode("Markdown")
-                            .text("Options:")
-                            .replyMarkup(keyboard)
-                            .build());
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
@@ -116,7 +85,6 @@ public class TelegramBot extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
     }
-
 
     private static InputFile createSashasPDF() throws FileNotFoundException, DocumentException, SQLException, ClassNotFoundException {
         String fileName = //"/home/sashakashinskaya/SashasData.pdf";
@@ -230,4 +198,36 @@ public class TelegramBot extends TelegramLongPollingBot {
             }
         }
     }
+
+    private void sendOptionsButtons(Message message){
+        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup();
+        InlineKeyboardButton buttonS = new InlineKeyboardButton();
+        InlineKeyboardButton buttonY = new InlineKeyboardButton();
+
+        buttonS.setText("Sasha's activity");
+        buttonS.setCallbackData("startSasha");
+        buttonY.setText("Yura's activity");
+        buttonY.setCallbackData("startYura");
+
+        List<InlineKeyboardButton> buttons = new ArrayList<>();
+        buttons.add(buttonS);
+        buttons.add(buttonY);
+
+        List <List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        rowList.add(buttons);
+        keyboard.setKeyboard(rowList);
+        try {
+            execute(
+                    SendMessage.builder()
+                            .chatId(message.getChatId())
+                            .parseMode("Markdown")
+                            .text("Options:")
+                            .replyMarkup(keyboard)
+                            .build());
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
