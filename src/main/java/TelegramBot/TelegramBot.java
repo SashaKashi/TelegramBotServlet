@@ -35,12 +35,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "sevens_activity_bot";
+        return "hope_the_last_activity_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "5433081616:AAHcZCIM6K1V1ei9RjS8qGda_ifJN9Z0YrI";
+        return "5448253407:AAFlubrnEvSdZ_VutjS9mldCtuvPptrGorM";
     }
 
     @Override
@@ -53,7 +53,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if ("/start".equals(messageText)) {
                 startAnswer(command);
-
             } else {
                 defaultAnswer(command);
             }
