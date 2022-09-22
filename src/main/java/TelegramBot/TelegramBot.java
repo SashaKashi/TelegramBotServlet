@@ -19,6 +19,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -102,10 +103,13 @@ public class TelegramBot extends TelegramLongPollingBot {
         table.addCell(c1);
         table.setHeaderRows(1);
 
+        Date today = Date.valueOf(LocalDate.now());
+
         PreparedStatement ps;
         ResultSet rs;
-        String query = "SELECT * FROM activity WHERE student_name = 'Sasha' and status = 'valid'";
+        String query = "SELECT * FROM activity WHERE student_name = 'Sasha' and activity_data = ?";
         ps = Utils.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+        ps.setDate(1, today);
         rs = ps.executeQuery();
 
         document.add(new Paragraph("Sasha's activity " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"))));
@@ -142,10 +146,13 @@ public class TelegramBot extends TelegramLongPollingBot {
         table.addCell(c1);
         table.setHeaderRows(1);
 
+        Date today = Date.valueOf(LocalDate.now());
+
         PreparedStatement ps;
         ResultSet rs;
-        String query = "SELECT * FROM activity WHERE student_name = 'Yury' and status = 'valid'";
+        String query = "SELECT * FROM activity WHERE student_name = 'Yury' and activity_data = ?";
         ps = Utils.getConnection().prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ps.setDate(1, today);
         rs = ps.executeQuery();
 
         document.add(new Paragraph("Yury's activity " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"))));

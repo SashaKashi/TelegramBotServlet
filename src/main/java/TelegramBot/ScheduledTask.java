@@ -5,7 +5,6 @@ public class ScheduledTask  extends TimerTask {
 
     TelegramBot bot;
 
-
     public ScheduledTask(TelegramBot bot) {
         this.bot = bot;
     }
